@@ -1,260 +1,128 @@
-🧾 Fases del laboratorio – Proyecto AWS EKS + Serverless
+### **Hospital Events – Arquitectura Serverless en AWS**
 
-Fase 0 – Configuración base
 
-Terraform inicializado (>= 1.6.0).
 
+#### Descripción
 
+Sistema híbrido en AWS que procesa eventos hospitalarios (pacientes, citas, inventarios, facturación) usando API Gateway, Lambdas, SQS, DynamoDB y CloudWatch. El flujo desacopla productores y consumidores, asegurando escalabilidad, resiliencia y observabilidad.
 
-Provider AWS versión ~> 5.50.
 
 
 
-Variables definidas:
 
+###### Arquitectura
 
+API Gateway: expone endpoints REST /pacientes, /citas, /inventarios, /facturacion.
 
-aws\_region = us-east-1
+Lambdas productores: reciben requests y envían mensajes a la cola SQS.
 
+SQS (hospital-events-queue): cola central que desacopla productores y consumidores.
 
+Lambda consumidor: procesa mensajes de SQS y los guarda en DynamoDB.
 
-project\_initials = JSV
+DynamoDB (hospital-events): almacena eventos con atributos id, servicio, payload, timestamp.
 
+CloudWatch: logs, alarmas y dashboard centralizado.
 
 
-env = dev
 
+Despliegue con Terraform
 
+Inicializar Terraform:
 
-cluster\_role\_arn = arn:aws:iam::730335546358:role/c174285a4511470l11506634t1w730335-LabEksClusterRole-a7GGm8V2UeeU
 
 
+!\[Init Lambda](sanavi-infra/lambdas/images/init.png)
 
-node\_role\_arn = arn:aws:iam::730335546358:role/c174285a4511470l11506634t1w730335546-LabEksNodeRole-5CbQPh6hnInC
 
 
+Aplicar la infraestructura:
 
-vpc\_id = vpc-09eba15796328f763
 
 
 
-Cluster EKS creado con recursos nativos:
 
+!\[Init Lambda](sanavi-infra/lambdas/images/apply.png)
 
 
-aws\_eks\_cluster (plano de control).
 
 
 
-aws\_eks\_node\_group (nodos).
+Archivos principales:
 
 
 
-Compatibilidad de AZs: filtradas a us-east-1a, us-east-1b, us-east-1c.
+lambdas-env.tf → definición de Lambdas y SQS.
 
+dynamo.tf → tabla DynamoDB.
 
+alarms.tf → alarmas de CloudWatch.
 
-Versión de Kubernetes: 1.29.
+dashboard.tf → dashboard de métricas.
 
 
 
-👉 Resultado: cluster etclusterJSV-dev operativo con 3 nodos t3.small.
 
 
+Pruebas end‑to‑end
 
-Fase 1 – Networking y despliegue inicial
+Enviar request desde Postman:
 
-Validar acceso al cluster con aws eks update-kubeconfig.
+!\[Init Lambda](sanavi-infra/lambdas/images/3.png)
 
 
 
-Crear namespaces: frontend, backend, admin, web-test.
 
 
+Validar en DynamoDB (CLI)
 
-Desplegar NGINX de prueba en web-test con Service tipo LoadBalancer.
+!\[Init Lambda](sanavi-infra/lambdas/images/4.png)
 
 
 
-Validar acceso vía ELB externo.
 
 
+Ejemplo de salida:
 
-Configurar NetworkPolicies para aislar tráfico (ejemplo: solo frontend puede hablar con backend).
+!\[Init Lambda](sanavi-infra/lambdas/images/5.png)
 
 
 
-👉 Resultado: cluster accesible, workloads iniciales corriendo, aislamiento básico aplicado.
 
 
+Revisar CloudWatch Logs:
 
-Fase 2 – Microservicios backend
+!\[Init Lambda](sanavi-infra/lambdas/images/6.png)
 
-Desplegar servicios dummy:
 
 
+Dashboard en CloudWatch: abrir HospitalEventsDashboard y validar métricas de Lambdas y DynamoDB.
 
-pacientes
+#### 
 
+#### Estimación de costos en producción
 
+#### 
 
-citas
+Lambda: ~2M invocaciones → $8 USD
 
+SQS: ~2M mensajes → $0.80 USD
 
+DynamoDB: ~1M lecturas + 500K escrituras → $25 USD
 
-inventarios
+CloudWatch Logs + Alarms → $3 USD
 
+Total mensual aproximado: $36–40 USD
 
 
-facturación
 
 
 
-Organizar en namespaces (frontend, backend, admin).
+##### diagrama de la arquitectura
 
 
 
-Configurar Horizontal Pod Autoscaler (HPA) y Vertical Pod Autoscaler (VPA) para escalabilidad.
+!\[Init Lambda](sanavi-infra/lambdas/images/7.png)
 
 
-
-Validar con kubectl get hpa.
-
-
-
-👉 Resultado: microservicios corriendo con escalabilidad automática.
-
-
-
-Fase 3 – Serverless (Lambda + API Gateway + SQS)
-
-Crear funciones Lambda con prefijo etfxnJSV-....
-
-
-
-Ejemplo: etfxnJSV-citas-create.
-
-
-
-Integrar con API Gateway (etapiJSV-hospital-dev).
-
-
-
-Crear cola SQS para desacoplar eventos.
-
-
-
-Probar invocación con curl o Invoke-RestMethod.
-
-
-
-👉 Resultado: endpoints REST funcionando, Lambda procesando eventos, integración con SQS.
-
-
-
-Fase 4 – Seguridad
-
-TLS/SSL con ACM (si tu lab permite certificados).
-
-
-
-IAM mínimo privilegio (roles ya definidos).
-
-
-
-RBAC en Kubernetes.
-
-
-
-Secrets en AWS Secrets Manager.
-
-
-
-👉 Resultado: seguridad aplicada en plano de control y workloads.
-
-
-
-Fase 5 – Observabilidad
-
-CloudWatch Logs para Lambda y API Gateway.
-
-
-
-Prometheus + Grafana (si tu lab permite).
-
-
-
-Alarmas CloudWatch (ejemplo: errores Lambda > 5 en 5 min).
-
-
-
-Troubleshooting con kubectl logs.
-
-
-
-👉 Resultado: monitoreo activo y alarmas configuradas.
-
-
-
-Fase 6 – CI/CD
-
-Pipelines con terraform plan/apply.
-
-
-
-Scripts: init.sh, apply.sh, destroy.sh.
-
-
-
-Validación automática de formato y plan.
-
-
-
-👉 Resultado: despliegues reproducibles y automatizados.
-
-
-
-Fase 7 – Costos y presentación
-
-Estimación con AWS Pricing Calculator:
-
-
-
-EKS control plane ~72 USD/mes.
-
-
-
-Nodos EC2 ~60 USD/mes.
-
-
-
-RDS PostgreSQL ~120 USD/mes.
-
-
-
-S3 + Glacier ~20 USD/mes.
-
-
-
-Lambda + API Gateway ~20 USD/mes.
-
-
-
-CloudWatch ~10 USD/mes.
-
-
-
-Total aprox: 300 USD/mes → 3600 USD/año.
-
-
-
-Presentación al cliente con diagrama y pruebas.
-
-
-
-👉 Resultado: visión clara de costos y beneficios.
-
-
-
-✅ Con esto tienes la ruta completa del laboratorio, desde la fase 0 (infra base) hasta la fase 7 (presentación final), todo alineado con tus roles, VPC y restricciones de laboratorio.
 
