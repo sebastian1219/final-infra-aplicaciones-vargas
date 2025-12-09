@@ -126,23 +126,113 @@ Total mensual aproximado: $36–40 USD
 
 
 
+flowchart LR
+
+&nbsp;   A\[API Gateway] --> B1\[Lambda Pacientes]
+
+&nbsp;   A --> B2\[Lambda Citas]
+
+&nbsp;   A --> B3\[Lambda Inventarios]
+
+&nbsp;   A --> B4\[Lambda Facturación]
+
+
+
+&nbsp;   B1 --> C\[SQS hospital-events-queue]
+
+&nbsp;   B2 --> C
+
+&nbsp;   B3 --> C
+
+&nbsp;   B4 --> C
+
+
+
+&nbsp;   C --> D\[Lambda Consumidor]
+
+&nbsp;   D --> E\[DynamoDB hospital-events]
+
+&nbsp;   E --> F\[CloudWatch Dashboard \& Alarms]
+
+
+
+sequenceDiagram
+
+&nbsp;   participant Dev as Desarrollador
+
+&nbsp;   participant TF as Terraform
+
+&nbsp;   participant AWS as AWS Infra
+
+
+
+&nbsp;   Dev->>TF: terraform init
+
+&nbsp;   TF->>AWS: Inicializa proveedores
+
+&nbsp;   Dev->>TF: terraform apply
+
+&nbsp;   TF->>AWS: Crea recursos (API Gateway, Lambdas, SQS, DynamoDB, CloudWatch)
+
+&nbsp;   AWS-->>Dev: Infraestructura desplegada
+
+
+
+sequenceDiagram
+
+&nbsp;   participant User as Postman
+
+&nbsp;   participant API as API Gateway
+
+&nbsp;   participant Lambda as Lambda Productor
+
+&nbsp;   participant SQS as SQS Queue
+
+&nbsp;   participant Consumer as Lambda Consumidor
+
+&nbsp;   participant DB as DynamoDB
+
+&nbsp;   participant CW as CloudWatch
+
+
+
+&nbsp;   User->>API: POST /pacientes
+
+&nbsp;   API->>Lambda: Invoca función
+
+&nbsp;   Lambda->>SQS: Envía mensaje
+
+&nbsp;   SQS->>Consumer: Dispara evento
+
+&nbsp;   Consumer->>DB: Guarda registro
+
+&nbsp;   DB-->>User: Datos disponibles
+
+&nbsp;   Consumer->>CW: Logs y métricas
 
 
 
 
-!\[Init Lambda](lambdas/images/init.png)
 
-!\[Apply Terraform](lambdas/images/apply.png)
 
-!\[Postman Request](lambdas/images/3.png)
 
-!\[DynamoDB CLI](lambdas/images/4.png)
 
-!\[DynamoDB Output](lambdas/images/5.png)
 
-!\[CloudWatch Logs](lambdas/images/6.png)
 
-!\[Architecture Diagram](lambdas/images/7.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
