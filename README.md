@@ -122,3 +122,27 @@ Total mensual aproximado: $36–40 USD
 
 !\[Architecture Diagram](lambdas/images/7.png)
 
+
+
+
+
+
+
+
+
+!\[Init Lambda](lambdas/images/init.png)
+
+!\[Apply Terraform](lambdas/images/apply.png)
+
+!\[Postman Request](lambdas/images/3.png)
+
+!\[DynamoDB CLI](lambdas/images/4.png)
+
+!\[DynamoDB Output](lambdas/images/5.png)
+
+!\[CloudWatch Logs](lambdas/images/6.png)
+
+!\[Architecture Diagram](lambdas/images/7.png)
+
+
+
