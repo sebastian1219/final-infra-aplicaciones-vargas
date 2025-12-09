@@ -32,7 +32,7 @@ Inicializar Terraform:
 
 
 
-!\[Init Lambda](sanavi-infra/lambdas/images/init.png)
+!\[Init Lambda](./lambdas/images/init.png)
 
 
 
@@ -42,7 +42,7 @@ Aplicar la infraestructura:
 
 
 
-!\[Init Lambda](sanavi-infra/lambdas/images/apply.png)
+!\[Init Lambda](./lambdas/images/apply.png)
 
 
 
@@ -68,7 +68,7 @@ Pruebas end‑to‑end
 
 Enviar request desde Postman:
 
-!\[Init Lambda](sanavi-infra/lambdas/images/3.png)
+!\[Init Lambda](./lambdas/images/3.png)
 
 
 
@@ -76,7 +76,7 @@ Enviar request desde Postman:
 
 Validar en DynamoDB (CLI)
 
-!\[Init Lambda](sanavi-infra/lambdas/images/4.png)
+!\[Init Lambda](./lambdas/images/4.png)
 
 
 
@@ -84,7 +84,7 @@ Validar en DynamoDB (CLI)
 
 Ejemplo de salida:
 
-!\[Init Lambda](sanavi-infra/lambdas/images/5.png)
+!\[Init Lambda](./lambdas/images/5.png)
 
 
 
@@ -92,7 +92,7 @@ Ejemplo de salida:
 
 Revisar CloudWatch Logs:
 
-!\[Init Lambda](sanavi-infra/lambdas/images/6.png)
+!\[Init Lambda](./lambdas/images/6.png)
 
 
 
@@ -122,7 +122,29 @@ Total mensual aproximado: $36–40 USD
 
 
 
-!\[Init Lambda](sanavi-infra/lambdas/images/7.png)
+!\[Init Lambda](./lambdas/images/7.png)
 
 
+
+
+
+
+
+
+
+
+
+!\[Init Lambda](./lambdas/images/init.png)
+
+!\[Apply Terraform](./lambdas/images/apply.png)
+
+!\[Paso 3](./lambdas/images/3.png)
+
+!\[Paso 4](./lambdas/images/4.png)
+
+!\[Paso 5](./lambdas/images/5.png)
+
+!\[Paso 6](./lambdas/images/6.png)
+
+!\[Paso 7](./lambdas/images/7.png)
 
