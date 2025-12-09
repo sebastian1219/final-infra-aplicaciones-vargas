@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-fe-to-be
+  namespace: backend
+spec:
+  podSelector:
+    matchLabels:
+      tier: backend
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: frontend
+      ports:
+        - protocol: TCP
+          port: 8080
+  policyTypes:
+    - Ingress

@@ -1,0 +1,6 @@
+aws_region       = "us-east-1"
+project_initials = "JSV"
+env              = "dev"
+cluster_role_arn = "arn:aws:iam::730335546358:role/c174285a4511470l11506634t1w730335-LabEksClusterRole-a7GGm8V2UeeU"
+node_role_arn    = "arn:aws:iam::730335546358:role/c174285a4511470l11506634t1w730335546-LabEksNodeRole-5CbQPh6hnInC"
+vpc_id           = "vpc-09eba15796328f763"

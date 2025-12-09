@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: citas-dep
+  namespace: backend
+  labels:
+    app: citas
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: citas
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: citas
+        tier: backend
+    spec:
+      containers:
+        - name: citas
+          image: nginx:1.25-alpine
+          ports:
+            - containerPort: 80   # 🔧 corregido
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80            # 🔧 corregido
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80            # 🔧 corregido
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+          env:
+            - name: SERVICE_NAME
+              value: "citas"
+            - name: LOG_LEVEL
+              value: "info"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: citas-svc
+  namespace: backend
+  labels:
+    app: citas
+    tier: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: citas
+    tier: backend
+  ports:
+    - port: 8080
+      targetPort: 80   # 🔧 corregido
+      protocol: TCP
+

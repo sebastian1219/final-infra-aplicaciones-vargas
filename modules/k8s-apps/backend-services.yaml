@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pacientes-dep
+  namespace: backend
+  labels:
+    app: pacientes
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pacientes
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: pacientes
+        tier: backend
+    spec:
+      containers:
+        - name: pacientes
+          image: nginx:1.25-alpine
+          ports:
+            - containerPort: 80   # 🔧 corregido
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80            # 🔧 corregido
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80            # 🔧 corregido
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+          env:
+            - name: SERVICE_NAME
+              value: "pacientes"
+            - name: LOG_LEVEL
+              value: "info"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pacientes-svc
+  namespace: backend
+  labels:
+    app: pacientes
+    tier: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: pacientes
+    tier: backend
+  ports:
+    - port: 8080
+      targetPort: 80   # 🔧 corregido
+      protocol: TCP
+
