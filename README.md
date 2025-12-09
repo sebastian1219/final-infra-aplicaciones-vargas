@@ -42,7 +42,7 @@ Aplicar la infraestructura:
 
 
 
-!\[Init Lambda](lambdas/images/apply.png)
+!\[Apply Terraform](lambdas/images/apply.png)
 
 
 
@@ -68,7 +68,7 @@ Pruebas end‑to‑end
 
 Enviar request desde Postman:
 
-!\[Init Lambda](lambdas/images/3.png)
+!\[Postman Request](lambdas/images/3.png)
 
 
 
@@ -76,7 +76,7 @@ Enviar request desde Postman:
 
 Validar en DynamoDB (CLI)
 
-!\[Init Lambda](lambdas/images/4.png)
+!\[DynamoDB CLI](lambdas/images/4.png)
 
 
 
@@ -84,15 +84,13 @@ Validar en DynamoDB (CLI)
 
 Ejemplo de salida:
 
-!\[Init Lambda](lambdas/images/5.png)
-
-
+!\[DynamoDB Output](lambdas/images/5.png)
 
 
 
 Revisar CloudWatch Logs:
 
-!\[Init Lambda](lambdas/images/6.png)
+!\[CloudWatch Logs](lambdas/images/6.png)
 
 
 
@@ -122,5 +120,5 @@ Total mensual aproximado: $36–40 USD
 
 
 
-!\[Init Lambda](lambdas/images/7.png)
+!\[Architecture Diagram](lambdas/images/7.png)
 
