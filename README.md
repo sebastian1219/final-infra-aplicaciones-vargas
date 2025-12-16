@@ -1,13 +1,13 @@
-### **Hospital Events – Arquitectura Serverless en AWS**
+Hospital Events – Arquitectura Serverless en AWS**
 
 
-#### Descripción
+Descripción
 
 Sistema híbrido en AWS que procesa eventos hospitalarios (pacientes, citas, inventarios, facturación) usando API Gateway, Lambdas, SQS, DynamoDB y CloudWatch. El flujo desacopla productores y consumidores, asegurando escalabilidad, resiliencia y observabilidad.
 
 
 
-###### Arquitectura
+Arquitectura
 
 API Gateway: expone endpoints REST /pacientes, /citas, /inventarios, /facturacion.
 
@@ -25,6 +25,7 @@ CloudWatch: logs, alarmas y dashboard centralizado.
 
 Despliegue con Terraform
 
+
 Inicializar Terraform:
 
 !\[Init Terraform](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/init.png?raw=true)
@@ -37,16 +38,11 @@ Aplicar la infraestructura:
 !\[Apply Terraform](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/apply.png?raw=true)
 
 
-
 Archivos principales:
 
-
 lambdas-env.tf → definición de Lambdas y SQS.
-
 dynamo.tf → tabla DynamoDB.
-
 alarms.tf → alarmas de CloudWatch.
-
 dashboard.tf → dashboard de métricas.
 
 
@@ -76,28 +72,19 @@ Revisar CloudWatch Logs:
 
 Dashboard en CloudWatch: abrir HospitalEventsDashboard y validar métricas de Lambdas y DynamoDB.
 
-#### 
+ 
 
-#### Estimación de costos en producción
+Estimación de costos en producción
 
-#### 
 
 Lambda: ~2M invocaciones → $8 USD
-
 SQS: ~2M mensajes → $0.80 USD
-
 DynamoDB: ~1M lecturas + 500K escrituras → $25 USD
-
 CloudWatch Logs + Alarms → $3 USD
-
 Total mensual aproximado: $36–40 USD
 
 
-
-
-
-##### diagrama de la arquitectura
-
+diagrama de la arquitectura
 
 !\[Architecture Diagram](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/7.png?raw=true)
 
