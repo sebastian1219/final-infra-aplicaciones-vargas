@@ -2,6 +2,38 @@
 
 
 
+
+
+!\[Init Terraform](images/init.png)
+
+!\[Apply Terraform](images/apply.png)
+
+!\[Postman Request](images/3.png)
+
+!\[DynamoDB CLI](images/4.png)
+
+!\[DynamoDB Output](images/5.png)
+
+!\[CloudWatch Logs](images/6.png)
+
+!\[Architecture Diagram](images/7.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### Descripción
 
 Sistema híbrido en AWS que procesa eventos hospitalarios (pacientes, citas, inventarios, facturación) usando API Gateway, Lambdas, SQS, DynamoDB y CloudWatch. El flujo desacopla productores y consumidores, asegurando escalabilidad, resiliencia y observabilidad.
