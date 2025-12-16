@@ -30,9 +30,7 @@ Despliegue con Terraform
 
 Inicializar Terraform:
 
-
-
-!\[SonarQube Report](images/init.png)
+!\[Init Terraform](./images/init.png)
 
 
 
@@ -42,7 +40,7 @@ Aplicar la infraestructura:
 
 
 
-!\[Apply Terraform](images/apply.png)
+!\[Apply Terraform](./images/apply.png)
 
 
 
@@ -68,7 +66,7 @@ Pruebas end‑to‑end
 
 Enviar request desde Postman:
 
-!\[Postman Request](images/3.png)
+!\[Postman Request](./images/3.png)
 
 
 
@@ -76,7 +74,7 @@ Enviar request desde Postman:
 
 Validar en DynamoDB (CLI)
 
-!\[DynamoDB CLI](images/4.png)
+!\[DynamoDB CLI](./images/4.png)
 
 
 
@@ -84,13 +82,15 @@ Validar en DynamoDB (CLI)
 
 Ejemplo de salida:
 
-!\[DynamoDB Output](images/5.png)
+!\[DynamoDB Output](./images/5.png)
+
+
 
 
 
 Revisar CloudWatch Logs:
 
-!\[CloudWatch Logs](images/6.png)
+!\[CloudWatch Logs](./images/6.png)
 
 
 
@@ -120,5 +120,5 @@ Total mensual aproximado: $36–40 USD
 
 
 
-!\[Architecture Diagram](images/7.png)
+!\[Architecture Diagram](./images/7.png)
 
