@@ -32,7 +32,7 @@ Inicializar Terraform:
 
 
 
-!\[Init Lambda](images/init.png)
+!\[SonarQube Report](images/init.png)
 
 
 
@@ -121,8 +121,4 @@ Total mensual aproximado: $36–40 USD
 
 
 !\[Architecture Diagram](images/7.png)
-
-
-
-
 
