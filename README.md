@@ -30,7 +30,7 @@ Despliegue con Terraform
 
 Inicializar Terraform:
 
-!\[Init Terraform](./images/init.png)
+!\[Init Terraform](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/init.png?raw=true)
 
 
 
@@ -40,7 +40,7 @@ Aplicar la infraestructura:
 
 
 
-!\[Apply Terraform](./images/apply.png)
+!\[Apply Terraform](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/apply.png?raw=true)
 
 
 
@@ -66,7 +66,7 @@ Pruebas end‑to‑end
 
 Enviar request desde Postman:
 
-!\[Postman Request](./images/3.png)
+!\[Postman Request](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/3.png?raw=true)
 
 
 
@@ -74,15 +74,13 @@ Enviar request desde Postman:
 
 Validar en DynamoDB (CLI)
 
-!\[DynamoDB CLI](./images/4.png)
-
-
+!\[DynamoDB CLI](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/4.png?raw=true)
 
 
 
 Ejemplo de salida:
 
-!\[DynamoDB Output](./images/5.png)
+!\[DynamoDB Output](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/5.png?raw=true)
 
 
 
@@ -90,7 +88,7 @@ Ejemplo de salida:
 
 Revisar CloudWatch Logs:
 
-!\[CloudWatch Logs](./images/6.png)
+!\[CloudWatch Logs](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/6.png?raw=true)
 
 
 
@@ -120,5 +118,5 @@ Total mensual aproximado: $36–40 USD
 
 
 
-!\[Architecture Diagram](./images/7.png)
+!\[Architecture Diagram](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/7.png?raw=true)
 
