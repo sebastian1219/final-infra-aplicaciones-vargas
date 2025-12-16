@@ -152,3 +152,31 @@ Total mensual aproximado: $36–40 USD
 
 !\[Architecture Diagram](https://github.com/sebastian1219/final-infra-aplicaciones-vargas/blob/master/images/7.png?raw=true)
 
+
+
+
+
+
+
+
+
+
+
+
+
+!\[Init Terraform](images/init.png)
+
+!\[Apply Terraform](images/apply.png)
+
+!\[Postman Request](images/3.png)
+
+!\[DynamoDB CLI](images/4.png)
+
+!\[DynamoDB Output](images/5.png)
+
+!\[CloudWatch Logs](images/6.png)
+
+!\[Architecture Diagram](images/7.png)
+
+
+
